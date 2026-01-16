@@ -1,0 +1,74 @@
+<div class="resume two-column">
+    <aside class="sidebar">
+      <h1>{{ resume.personal.name }}</h1>
+  
+      <h3>Skills</h3>
+      <div class="skills">
+        <span class="skill-tile" *ngFor="let skill of resume.skills">
+          {{ skill }}
+        </span>
+      </div>
+    </aside>
+  
+    <main class="content">
+      <section>
+        <h2>Summary</h2>
+        <p>{{ resume.personal.summary }}</p>
+      </section>
+
+
+      <section class="mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+          Experience
+        </h2>
+  
+        <div
+          *ngFor="let exp of resume.experience"
+          class="mb-4 border-l-4 border-blue-500 pl-4"
+        >
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg font-semibold text-gray-800">
+              {{ exp.role }}
+            </h3>
+  
+            <span class="text-sm text-gray-500">
+              {{ exp.duration }}
+            </span>
+          </div>
+  
+          <p class="text-gray-600 font-medium">
+            {{ exp.company }}
+          </p>
+  
+          <p class="text-gray-700 mt-1">
+            {{ exp.description }}
+          </p>
+        </div>
+      </section>
+  
+  
+      <!-- EDUCATION -->
+      <section>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+          Education
+        </h2>
+  
+        <div
+          *ngFor="let edu of resume.education"
+          class="mb-3"
+        >
+          <h3 class="text-lg font-semibold text-gray-800">
+            {{ edu.degree }}
+          </h3>
+  
+          <p class="text-gray-600">
+            {{ edu.institute }}
+            <span *ngIf="edu.year">
+              • {{ edu.year }}
+            </span>
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+  

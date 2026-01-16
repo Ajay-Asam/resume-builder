@@ -1,0 +1,30 @@
+.two-column {
+    display: flex;
+    min-height: 100%;
+  }
+  
+  .sidebar {
+    width: 35%;
+    background: #f7f9fc;
+    padding: 24px;
+  }
+  
+  .content {
+    width: 65%;
+    padding: 24px;
+  }
+  
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .skill-tile {
+    background: white;
+    border-radius: 16px;
+    padding: 6px 10px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+  }
+  

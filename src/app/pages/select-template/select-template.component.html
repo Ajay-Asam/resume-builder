@@ -1,0 +1,166 @@
+<div class="text-center font-bold text-2xl pt-5">RESUME BUILDER</div>
+
+<form [formGroup]="resumeForm" class="space-y-6 p-20">
+
+  <h4 class="font-bold">Select Resume Template</h4>
+
+  <!-- TEMPLATE -->
+  <select class="mb-10" formControlName="template">
+    <option value="one">Template One</option>
+    <option value="two">Template Two</option>
+  </select>
+
+  <hr />
+
+  <!-- PERSONAL -->
+  <h3 class="font-bold">Personal Details</h3>
+
+  <div formGroupName="personal" class="flex gap-5">
+   
+    <div>
+      <input
+        placeholder="Name *"
+        formControlName="name"
+        class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500 "
+        [ngClass]="{'border-red-500': isInvalid('personal.name'), 'border-gray-300': !isInvalid('personal.name')}"
+      />
+      <p *ngIf="isInvalid('personal.name')" class="text-red-500 text-sm mt-1">
+        Name is required and must be at least 3 characters
+      </p>
+    </div>
+  
+    <!-- Email -->
+    <div>
+      <input
+        placeholder="Email *"
+        formControlName="email"
+        class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+        [ngClass]="{'border-red-500': isInvalid('personal.email'), 'border-gray-300': !isInvalid('personal.email')}"
+      />
+      <p *ngIf="isInvalid('personal.email')" class="text-red-500 text-sm mt-1">
+        Please enter a valid email
+      </p>
+    </div>
+  
+    <!-- Phone -->
+    <div>
+      <input
+        placeholder="Phone"
+        formControlName="phone"
+        class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+        [ngClass]="{'border-red-500': isInvalid('personal.phone'), 'border-gray-300': !isInvalid('personal.phone')}"
+      />
+    </div>
+
+      <!-- Summary -->
+  <div>
+    <textarea
+      placeholder="Summary"
+      formControlName="summary"
+      class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+      [ngClass]="{'border-red-500': isInvalid('personal.summary'), 'border-gray-300': !isInvalid('personal.summary')}"
+    ></textarea>
+  </div>
+
+  </div>
+
+  <hr />
+
+  <!-- EXPERIENCE -->
+  <h3 class="font-bold">Experience</h3>
+
+  <div formArrayName="experience" >
+    <div [formGroupName]="0" class="space-y-2" class="flex gap-5">
+      <div>
+        <input
+        placeholder="Company *"
+        formControlName="company"
+        class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+        [ngClass]="{'border-red-500': isInvalid('experience.0.company'), 'border-gray-300': !isInvalid('experience.0.company')}"
+      />
+      <p *ngIf="isInvalid('experience.0.company')" class="text-red-500 text-sm mt-1">
+        Company is required
+      </p>
+        </div>
+
+
+  <div>
+
+    <input
+      placeholder="Role *"
+      formControlName="role"
+      class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+      [ngClass]="{'border-red-500': isInvalid('experience.0.role'), 'border-gray-300': !isInvalid('experience.0.role')}"
+    />
+    <p *ngIf="isInvalid('experience.0.role')" class="text-red-500 text-sm mt-1">
+      Role is required
+    </p>
+  </div>
+  
+  <div>
+    <input
+      placeholder="Duration"
+      formControlName="duration"
+      class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+    />
+
+  </div>
+  <div>
+    <textarea
+      placeholder="Description"
+      formControlName="description"
+      class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+    ></textarea>
+
+  </div>
+    </div>
+  </div>
+  
+
+  <hr />
+
+  <!-- EDUCATION -->
+  <h3 class="font-bold">Education</h3>
+  <div formArrayName="education">
+    <div [formGroupName]="0" class="flex gap-5">
+      <div>
+        <input
+          placeholder="Institute *"
+          formControlName="institute"
+          class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500"
+          [ngClass]="{'border-red-500': isInvalid('education.0.institute'), 'border-gray-300': !isInvalid('education.0.institute')}"
+        />
+        <p *ngIf="isInvalid('education.0.institute')" class="text-red-500 text-sm mt-1">
+          Institute is required
+        </p>
+      </div>
+      <div>
+        <input placeholder="Degree" formControlName="degree" class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500" />
+      </div>
+      <div>
+        <input placeholder="Year" formControlName="year" class="border rounded-md p-2 w-full focus:outline-none focus:border-blue-500" />
+      </div>
+    </div>
+  </div>
+  <hr />
+
+  <!-- SKILLS -->
+  <h3 class="font-bold">Skills</h3>
+
+  <input placeholder="Add skill" formControlName="skillInput"  class="border border-gray-300 p-2 mr-5" />
+  <button type="button" (click)="addSkill()" class="bg-blue-100 px-5 py-3 rounded-lg">Add</button>
+
+  <ul>
+    <li *ngFor="let skill of skills.controls">
+      {{ skill.value }}
+    </li>
+  </ul>
+
+  <hr />
+
+  <button type="button" (click)="submit()" class="bg-blue-100 px-5 py-3 rounded-lg">
+    Submit & Build Resume
+  </button>
+
+<p *ngIf="fieldcheck" class="text-red-500 text-sm mt-1 font-300">All required (*) fields should be filled </p>
+</form>
